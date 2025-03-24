@@ -1,11 +1,13 @@
 package org.example.activite_pratique_n_3;
 
+import jakarta.validation.Valid;
 import org.example.activite_pratique_n_3.PatientRepository;
 import org.example.activite_pratique_n_3.Patient;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -33,5 +35,14 @@ public class PatientController {
     public String deletePatient(@RequestParam Long id, @RequestParam int page, @RequestParam String keyword) {
         patientRepository.deleteById(id);
         return "redirect:/?page=" + page + "&keyword=" + keyword;
+    }
+
+    @PostMapping("/save")
+    public String savePatient(@Valid @ModelAttribute Patient patient, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "form";
+        }
+        patientRepository.save(patient);
+        return "redirect:/patients";
     }
 }
