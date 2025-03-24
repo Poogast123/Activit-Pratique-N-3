@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${pageTitle}">Gestion des Patients</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Patients App</a>
+</nav>
+
+<!-- Contenu dynamique -->
+<div class="container mt-4">
+    <th:block th:insert="~{::content}"></th:block>
+</div>
+
+<!-- Footer -->
+<footer class="text-center mt-4">
+    <p>&copy; 2025 - Gestion des Patients</p>
+</footer>
+
+</body>
+</html>
